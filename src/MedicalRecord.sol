@@ -68,4 +68,15 @@ contract MedicalRecord{
         emit DoctorAdded();
     }
 
+    /*//////////////////////////////////////////////////////////////
+                             VIEW FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
+
+    function getPatientsCount()external view returns(uint256){
+        return patientCounter;
+    }
+
+    function getDoctorsCount()extenral view returns(uint256){
+        return doctorCounder;
+    }
 }
