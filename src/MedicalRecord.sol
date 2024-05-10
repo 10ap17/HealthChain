@@ -4,6 +4,9 @@ pragma solidity ^0.8.25;
 
 contract MedicalRecord{
 
+    event PatientAdded();
+    event DoctorAdded();
+
     struct Patient{
         string name;
         bool gender;
@@ -44,6 +47,8 @@ contract MedicalRecord{
         // Add the new patient to the mapping
         patient[_patientAddress] = newPatient;
         patientCounter++;
+
+        emit PatientAdded();
     }
 
     function addDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external{
@@ -59,6 +64,8 @@ contract MedicalRecord{
         // Add the new patient to the mapping
         doctor[_doctorAddress] = newDoctor;
         doctorCounder++;
+
+        emit DoctorAdded();
     }
 
 }
