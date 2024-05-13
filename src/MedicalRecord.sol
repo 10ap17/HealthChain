@@ -18,6 +18,9 @@ contract MedicalRecord{
     event PatientAdded();
     event DoctorAdded();
 
+    event PatientUpdated();
+    event DoctorUpdated();
+
     struct Patient{
         string name;
         bool gender;
@@ -79,6 +82,30 @@ contract MedicalRecord{
         emit DoctorAdded();
     }
 
+    function updatePatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external{
+        Patient memory patientToUpdate= patient[_patientAddress];
+        patientToUpdate.name = _name;
+        patientToUpdate.gender = _gender;
+        patientToUpdate.homeAddress = _homeAddress;
+        patientToUpdate.age = _age;
+        patientToUpdate.height = _height;
+        patientToUpdate.weight = _weight;
+        patientToUpdate.allergies = _allergies;
+        patientToUpdate.contact = _contact;
+
+        emit PatientUpdated();
+    }
+
+     function updateDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external{
+        Doctor memory doctorToUpdate= doctor[_doctorAddress];
+        doctorToUpdate.name = _name;
+        doctorToUpdate.gender = _gender;
+        doctorToUpdate.specialization = _specialization;
+        doctorToUpdate.contact = _contact;
+        doctorToUpdate.licenseId = _licenseId;
+       
+        emit DoctorUpdated();
+    }
     /*//////////////////////////////////////////////////////////////
                              VIEW FUNCTIONS
     //////////////////////////////////////////////////////////////*/
@@ -87,7 +114,7 @@ contract MedicalRecord{
         return patientCounter;
     }
 
-    function getDoctorsCount()extenral view returns(uint256){
+    function getDoctorsCount()external view returns(uint256){
         return doctorCounder;
     }
 }
