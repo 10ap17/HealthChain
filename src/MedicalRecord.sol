@@ -19,10 +19,11 @@
  `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'                                                                             
                                                                                                                                                      
 */
+import '../lib/openzeppelin-contracts/contracts/access/Ownable.sol';
 
 pragma solidity ^0.8.25;
 
-contract MedicalRecord{
+contract MedicalRecord is Ownable{
 
     event PatientAdded();
     event DoctorAdded();
@@ -55,8 +56,9 @@ contract MedicalRecord{
     uint256 public patientCounter;
     uint256 public doctorCounder;
     
+    constructor() Ownable(msg.sender) {}
 
-    function addPatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external{
+    function addPatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external onlyOwner{
          Patient memory newPatient = Patient({
             name: _name,
             gender: _gender,
@@ -75,7 +77,7 @@ contract MedicalRecord{
         emit PatientAdded();
     }
 
-    function addDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external{
+    function addDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external onlyOwner{
          Doctor memory newDoctor = Doctor({
             name: _name,
             gender: _gender,
