@@ -109,7 +109,14 @@ contract MedicalRecord{
     /*//////////////////////////////////////////////////////////////
                              VIEW FUNCTIONS
     //////////////////////////////////////////////////////////////*/
+    function getPatient(address _patientAddress)external view returns(Patient memory){
+        return patient[_patientAddress];
+    }
 
+    function getDocotr(address _doctorAddress)external view returns(Doctor memory){
+        return doctor[_doctorAddress];
+    }
+    
     function getPatientsCount()external view returns(uint256){
         return patientCounter;
     }
