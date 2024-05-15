@@ -53,8 +53,14 @@ contract MedicalRecord is Ownable{
 
     mapping(address=>Patient) public patient;
     mapping(address=>Doctor) public doctor;
+    mapping(address=> bool) public isDoctor;
     uint256 public patientCounter;
     uint256 public doctorCounder;
+
+    modifier ownerOrDocotr(){
+        require(isDoctor[msg.sender] == true || msg.sender == owner());
+        _;
+    }
     
     constructor() Ownable(msg.sender) {}
 
@@ -89,12 +95,13 @@ contract MedicalRecord is Ownable{
 
         // Add the new patient to the mapping
         doctor[_doctorAddress] = newDoctor;
+        isDoctor[_doctorAddress] = true;
         doctorCounder++;
 
         emit DoctorAdded();
     }
 
-    function updatePatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external{
+    function updatePatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external ownerOrDocotr{
         Patient memory patientToUpdate= patient[_patientAddress];
         patientToUpdate.name = _name;
         patientToUpdate.gender = _gender;
@@ -108,7 +115,7 @@ contract MedicalRecord is Ownable{
         emit PatientUpdated();
     }
 
-     function updateDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external{
+     function updateDoctor(address _doctorAddress, string memory _name, bool _gender, string memory _specialization,string memory _contact,uint256 _licenseId)external ownerOrDocotr{
         Doctor memory doctorToUpdate= doctor[_doctorAddress];
         doctorToUpdate.name = _name;
         doctorToUpdate.gender = _gender;
