@@ -17,3 +17,8 @@
 \ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /
  `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'                                                                             
 ```                                     
+## Table of Contents
+## About
+Welcome to the Medical Record Blockchain Project! This innovative initiative aims to revolutionize the healthcare industry by enhancing transparency, security, and efficiency in medical record management. Leveraging blockchain technology, this project provides a decentralized and immutable platform for storing patient and doctor information, ensuring data integrity and accessibility.
+
+In traditional healthcare systems, managing and sharing medical records can be cumbersome, prone to errors, and vulnerable to unauthorized access. By adopting blockchain technology, we address these challenges by creating a secure and transparent environment where patients, doctors, and healthcare providers can interact seamlessly. This project enables the efficient storage of medical records, verification of doctor credentials, and the setup of appointments, all while maintaining the highest standards of data privacy and security.
