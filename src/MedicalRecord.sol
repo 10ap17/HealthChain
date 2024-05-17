@@ -31,6 +31,8 @@ contract MedicalRecord is Ownable{
     event PatientUpdated();
     event DoctorUpdated();
 
+    error NotDoctor();
+
     struct Patient{
         string name;
         bool gender;
@@ -51,11 +53,23 @@ contract MedicalRecord is Ownable{
         uint256 licenseId;
     }
 
+    struct Appointment{
+        address doctor;
+        address patient;
+        string date;
+        string time;
+        string location;
+
+    }
+
     mapping(address=>Patient) public patient;
     mapping(address=>Doctor) public doctor;
     mapping(address=> bool) public isDoctor;
+    Appointment[] public appointment;
     uint256 public patientCounter;
     uint256 public doctorCounder;
+    uint256 public appointmentCounter;
+    uint256 public appointmentId;
 
     modifier ownerOrDocotr(){
         require(isDoctor[msg.sender] == true || msg.sender == owner());
@@ -99,6 +113,25 @@ contract MedicalRecord is Ownable{
         doctorCounder++;
 
         emit DoctorAdded();
+    }
+
+    function addAppointment(address _doctorAddress, address _patientAddress, string memory _date, string memory _time, string memory _location)external{
+        if(!isDoctor[_doctorAddress]){
+            revert NotDoctor();
+        }
+
+         Appointment memory newAppointment = Appointment({
+            doctor: _doctorAddress,
+            patient: _patientAddress,
+            date: _date,
+            time: _time,
+            location: _location
+            
+        });
+        appointment[appointmentId]= newAppointment;
+        appointmentCounter++;
+        appointmentId++;
+
     }
 
     function updatePatient(address _patientAddress, string memory _name,bool _gender,string memory _homeAddress,uint256 _age,uint256 _height,uint256 _weight,string memory _allergies,string memory _contact)external ownerOrDocotr{
