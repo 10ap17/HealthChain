@@ -169,11 +169,19 @@ contract MedicalRecord is Ownable{
         return doctor[_doctorAddress];
     }
 
+    function getAppointment(uint256 _appointmentId) external view returns(Appointment memory){
+        return appointment[_appointmentId];
+    }
+
     function getPatientsCount()external view returns(uint256){
         return patientCounter;
     }
 
     function getDoctorsCount()external view returns(uint256){
         return doctorCounder;
+    }
+
+    function getAppointmentCount()external view returns(uint256){
+        return appointmentCounter;
     }
 }
