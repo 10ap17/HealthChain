@@ -30,6 +30,7 @@ contract MedicalRecord is Ownable{
 
     event PatientUpdated();
     event DoctorUpdated();
+    event AppointmentUpdated();
 
     error NotDoctor();
 
@@ -157,6 +158,21 @@ contract MedicalRecord is Ownable{
         doctorToUpdate.licenseId = _licenseId;
        
         emit DoctorUpdated();
+    }
+
+    function updateAppointment(uint256 _appointmentId,address _doctorAddress, address _patientAddress, string memory _date, string memory _time, string memory _location )external{
+         if(!isDoctor[_doctorAddress]){
+            revert NotDoctor();
+        }
+        
+        Appointment memory appointmentToUpdate= appointment[_appointmentId];
+        appointmentToUpdate.doctor = _doctorAddress;
+        appointmentToUpdate.patient = _patientAddress;
+        appointmentToUpdate.date = _date;
+        appointmentToUpdate.time = _time;
+        appointmentToUpdate.location = _location;
+
+        emit AppointmentUpdated();
     }
     /*//////////////////////////////////////////////////////////////
                              VIEW FUNCTIONS
