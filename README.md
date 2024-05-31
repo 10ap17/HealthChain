@@ -23,6 +23,7 @@
 ~ [About](#about)
 
 ~ [Functionalities](#functionalities)
+
 ## <a name="requirements"></a>Requirements
 To work with this repository, you need to fulfill the following requirements:
 
@@ -51,7 +52,7 @@ Welcome to the Medical Record Blockchain Project! This innovative initiative aim
 
 In traditional healthcare systems, managing and sharing medical records can be cumbersome, prone to errors, and vulnerable to unauthorized access. By adopting blockchain technology, we address these challenges by creating a secure and transparent environment where patients, doctors, and healthcare providers can interact seamlessly. This project enables the efficient storage of medical records, verification of doctor credentials, and the setup of appointments, all while maintaining the highest standards of data privacy and security.
 
-## <a name=" functionalities"></a> Functionalities
+## <a name="functionalities"></a> Functionalities
 The `MedicalRecord` smart contract is designed to manage medical records securely and efficiently. It includes functionalities for managing `patients`, `doctors`, and `appointments.
 
 The contract allows the `owner` to add new `patients` using the `addPatient function`, which takes the patient's address, name, gender, home address, age, height, weight, allergies, and contact information as parameters. The patient information is stored in a mapping and an event `PatientAdded` is emitted when a new patient is added.
