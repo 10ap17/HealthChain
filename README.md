@@ -28,21 +28,21 @@
 To work with this repository, you need to fulfill the following requirements:
 
 Install Foundry:
-```
+```bash
 curl -L https://foundry.paradigm.xyz | bash
 foundryup
 ```
 Clone the HealthChain repository to your local machine using Git:
-```
+```bash
 git clone https://github.com/10ap17/HealthChain.git
 cd damn-vulnerable-defi-foundry
 ```
 Ensure that you have all the required dependencies installed to run the tests. You can install dependencies by running:
-```
+```bash
 forge install
 ```
 To test, you can use the following command:
-```
+```bash
 forge test
 ```
 Ensure that you meet these requirements before proceeding with any operations or testing within the HealthChain project.
